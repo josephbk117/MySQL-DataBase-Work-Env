@@ -1,6 +1,6 @@
 ﻿namespace MySQLDataBaseInterface
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,7 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.commandTextBox = new System.Windows.Forms.TextBox();
             this.commandButton = new System.Windows.Forms.Button();
             this.result_richText = new System.Windows.Forms.RichTextBox();
@@ -49,6 +49,7 @@
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.buttonLoad = new System.Windows.Forms.Button();
             this.buttonGraphSave = new System.Windows.Forms.Button();
+            this.buttonView = new System.Windows.Forms.Button();
             this.panelTableData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
@@ -85,7 +86,7 @@
             this.result_richText.Location = new System.Drawing.Point(12, 77);
             this.result_richText.Name = "result_richText";
             this.result_richText.ReadOnly = true;
-            this.result_richText.Size = new System.Drawing.Size(612, 155);
+            this.result_richText.Size = new System.Drawing.Size(539, 155);
             this.result_richText.TabIndex = 2;
             this.result_richText.Text = "";
             // 
@@ -137,7 +138,7 @@
             this.panelTableData.Controls.Add(this.labelDatabaseName);
             this.panelTableData.Location = new System.Drawing.Point(12, 238);
             this.panelTableData.Name = "panelTableData";
-            this.panelTableData.Size = new System.Drawing.Size(612, 258);
+            this.panelTableData.Size = new System.Drawing.Size(539, 274);
             this.panelTableData.TabIndex = 7;
             // 
             // labelTableName
@@ -177,7 +178,7 @@
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(3, 60);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(606, 195);
+            this.dataGridView1.Size = new System.Drawing.Size(533, 211);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowValidated);
             // 
@@ -213,14 +214,14 @@
             this.chart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart.Legends.Add(legend1);
-            this.chart.Location = new System.Drawing.Point(633, 77);
+            this.chart.Location = new System.Drawing.Point(557, 77);
             this.chart.Name = "chart";
             this.chart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "value";
             this.chart.Series.Add(series1);
-            this.chart.Size = new System.Drawing.Size(382, 342);
+            this.chart.Size = new System.Drawing.Size(458, 342);
             this.chart.TabIndex = 9;
             this.chart.Text = "chart1";
             title1.Name = "Title1";
@@ -231,9 +232,9 @@
             // 
             this.buttonLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonLoad.Font = new System.Drawing.Font("Camp", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLoad.Location = new System.Drawing.Point(633, 425);
+            this.buttonLoad.Location = new System.Drawing.Point(557, 425);
             this.buttonLoad.Name = "buttonLoad";
-            this.buttonLoad.Size = new System.Drawing.Size(382, 26);
+            this.buttonLoad.Size = new System.Drawing.Size(458, 26);
             this.buttonLoad.TabIndex = 10;
             this.buttonLoad.Text = "LOAD";
             this.buttonLoad.UseVisualStyleBackColor = true;
@@ -243,20 +244,33 @@
             // 
             this.buttonGraphSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonGraphSave.Font = new System.Drawing.Font("Camp", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonGraphSave.Location = new System.Drawing.Point(633, 457);
+            this.buttonGraphSave.Location = new System.Drawing.Point(557, 454);
             this.buttonGraphSave.Name = "buttonGraphSave";
-            this.buttonGraphSave.Size = new System.Drawing.Size(382, 26);
+            this.buttonGraphSave.Size = new System.Drawing.Size(458, 26);
             this.buttonGraphSave.TabIndex = 11;
             this.buttonGraphSave.Text = "SAVE";
             this.buttonGraphSave.UseVisualStyleBackColor = true;
             this.buttonGraphSave.Click += new System.EventHandler(this.buttonGraphSave_Click);
             // 
-            // Form1
+            // buttonView
+            // 
+            this.buttonView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonView.Font = new System.Drawing.Font("Camp", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonView.Location = new System.Drawing.Point(557, 483);
+            this.buttonView.Name = "buttonView";
+            this.buttonView.Size = new System.Drawing.Size(458, 26);
+            this.buttonView.TabIndex = 12;
+            this.buttonView.Text = "VIEW";
+            this.buttonView.UseVisualStyleBackColor = true;
+            this.buttonView.Click += new System.EventHandler(this.buttonView_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(60)))), ((int)(((byte)(80)))));
-            this.ClientSize = new System.Drawing.Size(1027, 498);
+            this.ClientSize = new System.Drawing.Size(1027, 514);
+            this.Controls.Add(this.buttonView);
             this.Controls.Add(this.buttonGraphSave);
             this.Controls.Add(this.buttonLoad);
             this.Controls.Add(this.chart);
@@ -269,7 +283,7 @@
             this.Controls.Add(this.commandButton);
             this.Controls.Add(this.commandTextBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "MySQL Database Management";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.panelTableData.ResumeLayout(false);
@@ -296,6 +310,7 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart;
         private System.Windows.Forms.Button buttonLoad;
         private System.Windows.Forms.Button buttonGraphSave;
+        private System.Windows.Forms.Button buttonView;
     }
 }
 

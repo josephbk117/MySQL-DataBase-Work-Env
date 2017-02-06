@@ -8,16 +8,16 @@ using System.Data;
 namespace MySQLDataBaseInterface
 {
 
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private const string SERVER = "127.0.0.1";
         private string DATABASE = "emp";
-
+        DataGridViewRowCollection rows;
         List<string> columnName = new List<string>();
         List<string> values = new List<string>();
 
         DB database;
-        public Form1()
+        public MainForm()
         {           
 
             InitializeComponent();
@@ -156,21 +156,16 @@ namespace MySQLDataBaseInterface
         }
 
         private void buttonLoad_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < columnName.Count; i++)
-            {
-                Console.WriteLine("Column " + columnName[i]);
-            }
-            int k = 1;
-            for (int i = 0; i < values.Count; i++)
-            {
-                Console.WriteLine("Value " + values[i]);               
-            }
-            for (k = 1; k < values.Count; k+=3)
-            {
-                Console.WriteLine("Name : " + values[k] + " ,age = " + values[k+1]);
-                chart.Series["value"].Points.AddXY(values[k], values[k + 1]);
-            }
+        {            
+            rows = dataGridView1.Rows;
+            int rowSize = rows.Count - 1;
+            chart.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+            chart.ChartAreas["ChartArea1"].AxisY.Interval = 1;
+            foreach (DataGridViewRow col in rows)
+            {                
+                if(col.Cells[1].Value != null)
+                    chart.Series["value"].Points.AddXY(col.Cells[1].Value, col.Cells[5].Value);
+            }            
             
         }
 
@@ -180,6 +175,19 @@ namespace MySQLDataBaseInterface
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 chart.SaveImage(sfd.FileName, System.Drawing.Imaging.ImageFormat.Png);
+            }
+        }
+
+        private void buttonView_Click(object sender, EventArgs e)
+        {
+            if (rows != null)
+            {
+                GraphViewer g = new GraphViewer(rows);
+                g.Show();
+            }
+            else
+            {
+                MessageBox.Show("Nothing to show.Load Data First");
             }
         }
     }

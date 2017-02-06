@@ -13,6 +13,9 @@ namespace MySQLDataBaseInterface
         private const string SERVER = "127.0.0.1";
         private string DATABASE = "emp";
 
+        List<string> columnName = new List<string>();
+        List<string> values = new List<string>();
+
         DB database;
         public Form1()
         {           
@@ -50,8 +53,7 @@ namespace MySQLDataBaseInterface
 
         void printData(int fieldNum,MySqlDataReader reader)
         {
-            List<string> columnName = new List<string>();
-            List<string> values = new List<string>();
+            
             //Add the column names
             result_richText.Text += "\n"; 
             for (int i = 0; i < fieldNum; i++)
@@ -151,6 +153,34 @@ namespace MySQLDataBaseInterface
                 passwordTextBox.Text = "";
             if (sender.Equals(textBoxDatabase))
                 textBoxDatabase.Text = "";
+        }
+
+        private void buttonLoad_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < columnName.Count; i++)
+            {
+                Console.WriteLine("Column " + columnName[i]);
+            }
+            int k = 1;
+            for (int i = 0; i < values.Count; i++)
+            {
+                Console.WriteLine("Value " + values[i]);               
+            }
+            for (k = 1; k < values.Count; k+=3)
+            {
+                Console.WriteLine("Name : " + values[k] + " ,age = " + values[k+1]);
+                chart.Series["value"].Points.AddXY(values[k], values[k + 1]);
+            }
+            
+        }
+
+        private void buttonGraphSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                chart.SaveImage(sfd.FileName, System.Drawing.Imaging.ImageFormat.Png);
+            }
         }
     }
 }

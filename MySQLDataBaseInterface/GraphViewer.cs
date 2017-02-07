@@ -12,13 +12,37 @@ namespace MySQLDataBaseInterface
 {
     public partial class GraphViewer : Form
     {
-        public GraphViewer(DataGridViewRowCollection rows)
+        Dictionary<int, string> dCols = new Dictionary<int, string>();
+        DataGridViewColumnCollection columns;
+        DataGridViewRowCollection rows;
+        
+        
+        public GraphViewer(DataGridViewRowCollection rows,DataGridViewColumnCollection columns)
         {
+            //get columns
+            this.columns = columns;
+            this.rows = rows;
+
             InitializeComponent();
-            foreach (DataGridViewRow col in rows)
+
+           
+
+            int index = 0;
+            foreach (DataGridViewColumn col in columns)
             {
-                if (col.Cells[1].Value != null)
-                    chart.Series["value1"].Points.AddXY(col.Cells[1].Value, col.Cells[5].Value);
+                dCols.Add(index, col.Name);
+                index++;
+            }
+            for (int i = 0; i < dCols.Count; i++)
+            {
+                Console.WriteLine("Dic contains : " + dCols[i]);
+                comboBoxXaxis.Items.Add(dCols[i]);
+                comboBoxYaxis.Items.Add(dCols[i]);
+            }
+            foreach (DataGridViewRow row in rows)
+            {
+                if (row.Cells[1].Value != null)
+                    chart.Series["value1"].Points.AddXY(row.Cells[1].Value, row.Cells[5].Value);
             }            
         }
 
@@ -45,6 +69,22 @@ namespace MySQLDataBaseInterface
             SaveFileDialog sfd = new SaveFileDialog();
             if (sfd.ShowDialog() == DialogResult.OK)
                 chart.SaveImage(sfd.FileName, System.Drawing.Imaging.ImageFormat.Png);
+        }
+
+        private void comboBoxXaxis_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Get index of combo box match with the key value and et as x Axis
+            //Common for both
+            chart.Series["value1"].Points.Clear();
+            foreach (DataGridViewRow row in rows)
+            {
+                if (row.Cells[1].Value != null && comboBoxYaxis.SelectedIndex >= 0 && comboBoxXaxis.SelectedIndex >= 0)
+                {
+                    
+                    chart.Series["value1"].Points.AddXY(row.Cells[comboBoxXaxis.SelectedIndex].Value,
+                        row.Cells[comboBoxYaxis.SelectedIndex].Value);
+                }
+            }
         }
     }
 }

@@ -13,6 +13,7 @@ namespace MySQLDataBaseInterface
         private const string SERVER = "127.0.0.1";
         private string DATABASE = "emp";
         DataGridViewRowCollection rows;
+        DataGridViewColumnCollection colmns;
         List<string> columnName = new List<string>();
         List<string> values = new List<string>();
 
@@ -158,6 +159,7 @@ namespace MySQLDataBaseInterface
         private void buttonLoad_Click(object sender, EventArgs e)
         {            
             rows = dataGridView1.Rows;
+            colmns = dataGridView1.Columns;
             int rowSize = rows.Count - 1;
             chart.ChartAreas["ChartArea1"].AxisX.Interval = 1;
             chart.ChartAreas["ChartArea1"].AxisY.Interval = 1;
@@ -182,7 +184,7 @@ namespace MySQLDataBaseInterface
         {
             if (rows != null)
             {
-                GraphViewer g = new GraphViewer(rows);
+                GraphViewer g = new GraphViewer(rows,colmns);
                 g.Show();
             }
             else
